@@ -3,23 +3,21 @@ module.exports=function(sequelize, DataTypes)
 {
 	var Categories =sequelize.define('Categories',
 	{
-		id:
+		
+		categoryName:
 		{
-				type:DataTypes.STRING,
-				name:"id"
-		},
-		name:
-		{
-				type:DataTypes.STRING,
-				name:"name"
+			type:DataTypes.STRING,
+			field:'category_name'
+
 		},
 		description:
 		{
-				type:DataTypes.STRING,
-				name:"description"
+			type:DataTypes.STRING,
+			field:"description"
 		}
 	},
 	{
 		tableName:"tbl_categories"
-	})
+	});
+	return Categories;
 }

@@ -3,18 +3,15 @@ module.exports=function(sequelize, DataTypes)
 {
 	var Regions = sequelize.define('Regions',
 	{
-		id:
-		{
-			type:DataTypes.INTEGER,
-			name:"id"
-		},
-		name:
+		
+		regionName:
 		{
 			type:DataTypes.STRING,
-			name:"name"
+			field:"region_name"
 		}
 	},
 	{
 		tableName:"tbl_regions"
-	})
+	});
+	return Regions;
 }

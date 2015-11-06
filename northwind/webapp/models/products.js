@@ -1,1 +1,56 @@
-products.js
+"use strict";
+module.exports=function(sequelize, DataTypes)
+{
+	var Products=sequelize.define('Products',
+	{
+		productName:
+		{
+			type:DataTypes.STRING,
+			field:"product_name"
+		},
+		quantityPerUnit:
+		{
+			type:DataTypes.STRING,
+			field:"quantity_per_unit"
+		},
+		unitPrice:
+		{
+			type:DataTypes.DOUBLE,
+			field:"unit_price"
+		},
+		unitInStock:
+		{
+			type:DataTypes.INTEGER,
+			field:"unit_in_stock"
+		},
+		unitOnOrder:
+		{
+			type:DataTypes.INTEGER,
+			field:"unit_on_order"
+		},
+		recorderLevel:
+		{
+			type:DataTypes.INTEGER,
+			field:"recorder_level"
+		},
+		discontinued:
+		{
+			type:DataTypes.INTEGER,
+			field:"discontinued"
+		}
+	},
+	{
+		tableName:"tbl_products"
+	},
+	{
+		classMethods:
+		{
+			associate:function(models)
+			{
+				Products.belongTo(models.Categories,{forignKey:"category_id"});
+				Products.belongTo(models.Suppliers,{forignKey:"supplier_id"});
+			}
+		}
+	});
+	return Products;
+}

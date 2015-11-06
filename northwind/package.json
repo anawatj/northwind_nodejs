@@ -16,6 +16,7 @@
     "jquery": "^2.1.4",
     "mysql": "^2.9.0",
     "sequelize": "^3.13.0",
+    "sequelize-cli": "^2.1.0",
     "systemjs": "0.19.2",
     "tedious": "^1.13.1"
   },

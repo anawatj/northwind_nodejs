@@ -3,26 +3,26 @@ module.exports=function(sequelize, DataTypes)
 {
 	var DemoGraphics = sequelize.define('DemoGraphics',
 	{
-		id:
-		{
-			type:DataTypes.INTEGER,
-			name:"id"
-		},
-		name:
+		
+		demographicName:
 		{
 			type:DataTypes.STRING,
-			name:"name"
+			field:"demographic_name"
 		}
 	},
 	{
-		table:"tbl_demographics"
+		tableName:"tbl_demographics"
 	},
 	{
     	classMethods: {
-      		associate: function(models) {
-        		DemoGraphics.belongToMany(models.Customers, {
-          		through: 'tbl_customers_demographics'
-        	});
+      			associate: function(models) {
+        			DemoGraphics.belongToMany(models.Customers, {
+          			through: 'tbl_customers_demographics',
+          			foreignKey: 'customer_type_id'
+        		});
+      		}
       	}
-    });
+     });
+    	
+    return DemoGraphics;
 }

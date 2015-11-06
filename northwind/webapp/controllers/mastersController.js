@@ -1,7 +1,8 @@
+var models  = require('../models');
 var express = require('express');
 var bodyParser  = require('body-parser');
 var mastersController = express.Router();
-var models  = require('../models');
+
 
 mastersController.use(bodyParser.urlencoded());
 mastersController.use(bodyParser.json());
@@ -15,9 +16,10 @@ mastersController.get('/',function(req,res)
 });
 mastersController.get("/regions/all",function(req,res)
 {
-	models.Regions.findAll().on("success",function(regions)
+	models.Regions.findAll()
+	.then(function(regions)
 	{
 		res.json(regions);
-	})
+	});
 });
 module.exports = mastersController;

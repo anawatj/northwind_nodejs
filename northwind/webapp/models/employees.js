@@ -1,88 +1,88 @@
 "use strict";
 module.exports=function(sequelize, DataTypes)
 {
-	var Employeees = sequelize.define('Employees',
+	var Employees = sequelize.define('Employees',
 	{
-		id:
-		{
-			type:DataTypes.INTEGER,
-			name:"id"
-		},
+		
 		firstName:
 		{
 			type:DataTypes.STRING,
-			name:"first_name"
+			field:"first_name"
 		},
 		lastName:
 		{
 			type:DataTypes.STRING,
-			name:"last_name"
+			field:"last_name"
 		},
 		title:
 		{
 			type:DataTypes.STRING,
-			name:"title"
+			field:"title"
 		},
 		titleOfCourtesy:
 		{
 			type:DataTypes.STRING,
-			name:"title_of_courtesy"
+			field:"title_of_courtesy"
 		},
 		birthDate:
 		{
 			type:DataTypes.DATE,
-			name:"birth_date"
+			field:"birth_date"
 		},
 		hireDate: {
 			type:DataTypes.DATE,
-			name:"hire_date"
+			field:"hire_date"
 		},
 		address:
 		{
 			type:DataTypes.STRING,
-			name:"address"
+			field:"address"
 		},
 		city:
 		{
 			type:DataTypes.STRING,
-			name:"city"
+			field:"city"
 		},
 		region:
 		{
 			type:DataTypes.STRING,
-			name:"region"
+			field:"region"
 		},
 		postalCode:{
 			type:DataTypes.STRING,
-			name:"postal_code"
+			field:"postal_code"
 		},
 		country:
 		{
 			type:DataTypes.STRING,
-			name:"country"
+			field:"country"
 		},
 		homePhone:{
 			type:DataTypes.STRING,
-			name:"home_phone"
+			field:"home_phone"
 		},
 		extension:{
 			type:DataTypes.STRING,
-			name:"extension"
+			field:"extension"
 		},
 		notes:{
 			type:DataTypes.STRING,
-			name:"notes"
+			field:"notes"
 		}
+	},
+	{
+		tableName:"tbl_employees"
 	},
 	{
     	classMethods: {
       		associate: function(models) {
-        		Employees.belongToMany(models.Territories, {
-          		through: 'tbl_employees_territories'
-        	});
+        		Employees.belongToMany(models.Territories, 
+        		{
+          			through: 'tbl_employees_territories',
+          			foreignKey:'employee_id'
+        		});
       	}
-    },
-	{
-		tableName:"tbl_employees"
-	});
+      }
+    });
+	return Employees;
 }

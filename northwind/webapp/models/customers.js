@@ -5,73 +5,74 @@ module.exports=function(sequelize, DataTypes)
 
 	var Customers = sequelize.define('Customers',
 	{
-		id:
-		{
-			type:DataTypes.INTEGER,
-			name:"id"
-		},
+		
 		companyName:
 		{
-			type:DataTypes.STRING
-			name:"company_name"
+			type:DataTypes.STRING,
+			field:"company_name"
 		},
 		contactName:
 		{
 			type:DataTypes.STRING,
-			name:"contact_name"
+			field:"contact_name"
 		},
 		contactTitle:
 		{
 			type:DataTypes.STRING,
-			name:"contact_title"
+			field:"contact_title"
 		},
 		address:
 		{
 			type:DataTypes.STRING,
-			name:"address"
+			field:"address"
 		},
 		city:
 		{
 			type:DataTypes.STRING,
-			name:"city"
+			field:"city"
 		},
 		region:
 		{
 			type:DataTypes.STRING,
-			name:"region"
+			field:"region"
 		},
 		postalCode:
 		{
 			type:DataTypes.STRING,
-			name:"postal_code"
+			field:"postal_code"
 		},
 		country:
 		{
 			type:DataTypes.STRING,
-			name:"country"
+			field:"country"
 		},
 		phone:
 		{
 			type:DataTypes.STRING,
-			name:"phone"
+			field:"phone"
 		},
 		fax:
 		{
 			type:DataTypes.STRING,
-			name:"fax"
+			field:"fax"
 		}
 	},
 	{
-    	classMethods: {
-      		associate: function(models) {
-        		Customers.belongToMany(models.DemoGraphics, {
-          		through: 'tbl_customers_demographics'
-        	});
-      	}
-    },
-	{
 		tableName:"tbl_customers"
-	});
+	},
+	{
+		classMethods:
+		{
+			associate:function(models)
+			{
+				Customers.belongToMany(models.DemoGraphics,{
+					  through: 'tbl_customers_demographics',
+  					  foreignKey: 'customer_id'
+				})
+			}
+		}
+	}
+	);
 
-
+	return Customers;
 }
