@@ -1,1 +1,26 @@
-index.html
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Northwind</title>
+	<link rel="stylesheet" type="text/css" href="../northwind/node_modules/bootstrap/dist/css/bootstrap.css">
+
+	<script type="text/javascript" src="../northwind/node_modules/jquery/dist/jquery.js"></script>
+	<script type="text/javascript" src="../northwind/node_modules/bootstrap/dist/js/bootstrap.js"></script>
+ <base href="/">
+	<script src="../northwind/node_modules/systemjs/dist/system.js"></script>
+    <script src="../northwind/node_modules/typescript/lib/typescript.js"></script>
+    <script src="../northwind/node_modules/angular2/bundles/angular2.dev.js"></script>
+    <script src="../northwind/node_modules/angular2/bundles/http.dev.js"></script>
+    <script src="../northwind/node_modules/angular2/bundles/router.dev.js"></script>
+    <script>
+      System.config({
+        transpiler: 'typescript',
+        typescriptOptions: { emitDecoratorMetadata: true }
+      });
+      System.import('../northwind/public/app/app.ts');
+    </script>
+</head>
+<body>
+		<app></app>
+</body>
+</html>
