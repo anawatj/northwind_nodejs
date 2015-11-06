@@ -16,7 +16,8 @@
     "jquery": "^2.1.4",
     "mysql": "^2.9.0",
     "sequelize": "^3.13.0",
-    "systemjs": "0.19.2"
+    "systemjs": "0.19.2",
+    "tedious": "^1.13.1"
   },
   "devDependencies": {
     "live-server": "^0.8.2",
