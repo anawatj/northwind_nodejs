@@ -4,10 +4,10 @@
 			<div class="row">
 					<div class="col-xs-3"><label>Name</label></div>
 					<div class="col-xs-6">
-						<input type="text" class="form-control"/>
+						<input type="text" class="form-control" [(ng-model)]="model.categoryName"/>
 					</div>
 					<div class='col-xs-3'>
-							<button class="btn btn-primary">Search</button>
+							<button class="btn btn-primary" (click) ="search()">Search</button>
 							<button class="btn btn-primary" (click)="create()">Create</button>
 					</div>
 			</div>
@@ -26,7 +26,20 @@
 									</tr>
 								</thead>
 								<tbody>
-									<tr></tr>
+									<tr *ng-for="#item of results">
+										<td style="text-align:center">
+											<button class="btn btn-primary" (click)="edit(item)"><i class="glyphicon glyphicon-pencil"></i></button>
+										</td>
+										<td style="text-align:center">
+											<button class="btn btn-primary" (click)="remove(item)"><i class="glyphicon glyphicon-trash"></i></button>
+										</td>
+										<td>
+											{{item.categoryName}}
+										</td>
+										<td>
+											{{item.description}}
+										</td>
+									</tr>
 								</tbody>
 						</table>
 				</div>

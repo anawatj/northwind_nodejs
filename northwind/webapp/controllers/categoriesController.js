@@ -67,12 +67,69 @@ categoriesController.post("/save",function(req,res)
 		{
 			res.json(ret);
 		});
+	}else
+	{
+		models.Categories.update(
+		{
+			
+			categoryName:req.body.categoryName,
+			description:req.body.description,
+			updateAt : new Date()
+		},
+		{
+			where:
+			{
+				id:req.body.id
+			}
+		}).then(function(result)
+		{
+			models.Categories.findAll(
+			{
+				where:
+				{
+					id:req.body.id
+				}
+			}).then(function(ret)
+			{
+				res.json(ret[0]);
+			});
+		});
 	}
 
   
 });
+categoriesController.post("/search",function(req,res)
+{
+		if(req.body.categoryName==undefined)
+		{
+			req.body.categoryName="";
+		}
+		models.Categories.findAll(
+				{
+					where:
+					{
+						categoryName:
+						{
+							$like:'%'+req.body.categoryName+'%'
+						}
+					}
+				}
+			).then(function(results)
+			{
+					res.json(results);
+			});
+});
 categoriesController.delete("/delete",function(req,res)
 {
-	res.json({});
+	models.Categories.destroy(
+	{
+		where :
+		{
+			id:req.query.id
+		}
+	}).then(function()
+	{
+		res.json(true);
+	})
 });
 module.exports= categoriesController;
