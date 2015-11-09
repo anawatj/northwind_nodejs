@@ -22,4 +22,20 @@ mastersController.get("/regions/all",function(req,res)
 		res.json(regions);
 	});
 });
+mastersController.get("/demographics/all",function(req,res)
+{
+	models.Demographics.findAll()
+	.then(function(demographics)
+	{
+		res.json(demographics);
+	});
+});
+mastersController.get("/territories/all",function(req,res)
+{
+	models.Territories.findAll()
+	.then(function(territories)
+	{
+		res.json(territories);
+	});
+});
 module.exports = mastersController;

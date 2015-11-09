@@ -1,3 +1,4 @@
+var models  = require('../models');
 var express = require('express');
 var bodyParser  = require('body-parser');
 var suppliersController = express.Router();
@@ -16,6 +17,14 @@ suppliersController.get('/',function(req,res)
 {
 	res.send("Categories");
 });
+suppliersController.get("/list",function(req,res)
+{
+	res.render("suppliers/list.html");
+});
+suppliersController.get("/entry",function(req,res)
+{
+	res.render("suppliers/entry.html");
+})
 /*************************
 * Api Function
 **************************/

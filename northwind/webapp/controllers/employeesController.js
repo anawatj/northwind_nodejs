@@ -1,3 +1,4 @@
+var models  = require('../models');
 var express = require('express');
 var bodyParser  = require('body-parser');
 var employeesController = express.Router();
@@ -15,6 +16,14 @@ employeesController.get('/',function(req,res)
 {
 	res.send("Categories");
 });
+employeesController.get("/list",function(req,res)
+{
+	res.render('employees/list.html');
+});
+employeesController.get("/entry",function(req,res)
+{
+	res.render("employees/entry.html");
+})
 /*************************
 * Api Function
 **************************/
