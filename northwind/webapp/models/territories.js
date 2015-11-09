@@ -7,6 +7,11 @@ module.exports=function(sequelize, DataTypes)
 		territoryName:{
 			type:DataTypes.STRING,
 			field:"territory_name"
+		},
+		regionId:
+		{
+			type:DataTypes.INTEGER,
+			field:"region_id"
 		}
 	},
 	{

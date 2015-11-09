@@ -17,7 +17,7 @@ module.exports=function(sequelize, DataTypes)
     	classMethods: {
       			associate: function(models) {
         			DemoGraphics.belongToMany(models.Customers, {
-          			through: 'tbl_customers_demographics',
+          			through: models.CustomerDemographics,
           			foreignKey: 'customer_type_id'
         		});
       		}

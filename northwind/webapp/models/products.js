@@ -3,6 +3,16 @@ module.exports=function(sequelize, DataTypes)
 {
 	var Products=sequelize.define('Products',
 	{
+		supplierId:
+		{
+			type:DataTypes.INTEGER,
+			field:"supplier_id"
+		},
+		categoryId:
+		{
+			type:DataTypes.INTEGER,
+			field:"category_id"
+		},
 		productName:
 		{
 			type:DataTypes.STRING,

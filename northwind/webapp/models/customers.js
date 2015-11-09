@@ -66,7 +66,7 @@ module.exports=function(sequelize, DataTypes)
 			associate:function(models)
 			{
 				Customers.belongToMany(models.DemoGraphics,{
-					  through: 'tbl_customers_demographics',
+					  through: models.CustomerDemographics,
   					  foreignKey: 'customer_id'
 				})
 			}

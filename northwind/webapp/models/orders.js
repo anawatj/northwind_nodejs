@@ -3,6 +3,21 @@ module.exports=function(sequelize, DataTypes)
 {
 	var Orders = sequelize.define('Orders',
 	{
+		customerId:
+		{
+			type:DataTypes.INTEGER,
+			field:"customer_id"
+		},
+		employeeId:
+		{
+			type:DataTypes.INTEGER,
+			field:"employee_id"
+		},
+		shipVia:
+		{
+			type:DataTypes.INTEGER,
+			field:"ship_via"
+		},
 		orderDate:
 		{
 			type:DataTypes.DATE,
