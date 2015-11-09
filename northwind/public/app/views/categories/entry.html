@@ -1,1 +1,31 @@
-entry.html
+<div class="contener">
+	<div class="col-xs-12">
+	<fieldset>
+		<legend>Northwind Save</legend>
+			<form>
+				<div class="row">
+						<div class="col-xs-3">
+								<label for="categoryName">Category Name</label>
+						</div>
+						<div class="col-xs-6">
+								<input type="text" class="form-control" [(ng-model)]="model.categoryName"/>
+						</div>
+				</div>
+				<div class="row">
+						<div class="col-xs-3">
+								<label for="description">Description</label>
+						</div>
+						<div class="col-xs-6">
+								<textarea class="form-control" [(ng-model)]="model.description"></textarea>
+						</div>
+				</div>
+				<div class="row">
+						<div class="col-xs-9">
+								<button class="btn btn-primary" type="button" (click)="save()">Save</button>
+								<button class="btn btn-primary" type="button">Clear</button>
+						</div>
+				</div>
+			</form>
+	</fieldset>
+	</div>
+</div>

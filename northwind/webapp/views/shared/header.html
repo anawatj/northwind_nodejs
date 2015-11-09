@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+		<title>Northwind</title>
+		<link rel="stylesheet" type="text/css" href="../node_modules/bootstrap/dist/css/bootstrap.css">
+
+		<script type="text/javascript" src="../node_modules/jquery/dist/jquery.js"></script>
+		<script type="text/javascript" src="../node_modules/bootstrap/dist/js/bootstrap.js"></script>
+ 		<base href="/">
+		<script src="../northwind/node_modules/systemjs/dist/system.js"></script>
+    	<script src="../northwind/node_modules/typescript/lib/typescript.js"></script>
+    	<script src="../northwind/node_modules/angular2/bundles/angular2.dev.js"></script>
+    	<script src="../northwind/node_modules/angular2/bundles/http.dev.js"></script>
+    	<script src="../northwind/node_modules/angular2/bundles/router.dev.js"></script>
+    	<script>
+      System.config({
+        transpiler: 'typescript',
+        typescriptOptions: { emitDecoratorMetadata: true }
+      });
+      System.import('../northwind/public/app/views/categories/entry.ts');
+      System.import("../northwind/public/app/views/categories/list.ts");
+    </script>
+    <style type="text/css">
+            .primary
+            {
+                     color: #fff;
+                     background-color: #337ab7;
+                     border-color: #2e6da4;
+            }
+    </style>
+</head>
+<body>
+    <div class="row">
+        <div class="col-xs-3">
+            <img></img>
+        </div>
+        <div class="col-xs-9">
+            <h1>Northwind System</h1>
+        </div>
+    </div>

@@ -5,7 +5,7 @@ import {CategoriesEntryPage} from './entry.ts'
 	{
 		selector:"categories-list",
 		directives:[FORM_DIRECTIVES,CORE_DIRECTIVES],
-		templateUrl:"./list.html"
+		templateUrl:"../../northwind/public/app/views/categories/list.html"
 	}
 )
 export class CategoriesListPage
@@ -14,4 +14,13 @@ export class CategoriesListPage
 	{
 		
 	}
+	create()
+	{
+		window.location="northwind/categories/entry";
+	}
+	search()
+	{
+	
+	}
 }
+bootstrap(CategoriesListPage);

@@ -3,7 +3,7 @@ import {Http, HTTP_PROVIDERS,Headers} from 'angular2/http';
 
 @Component({
   selector: 'app'
-  templateUrl:"../northwind/public/app//app.html"
+  templateUrl:"../northwind/public/app/app.html"
 
 })
 
