@@ -16,9 +16,7 @@ export class CategoriesEntryPage
 	{
 		id:0,
 		categoryName:"",
-		description:"",
-		createAt:new Date(),
-		updateAt:new Date()
+		description:""
 	};
 	constructor(http:Http)
 	{

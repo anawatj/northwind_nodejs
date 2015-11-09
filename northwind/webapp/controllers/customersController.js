@@ -29,7 +29,13 @@ customersController.get("/entry",function(req,res)
 **************************/
 customersController.get("/all",function(req,res)
 {
-	res.json([]);
+	models.Customers.findAll(
+	{
+		include:[models.DemoGraphics]
+	}).then(function(customers)
+	{
+		res.json(customers);
+	});
 });
 customersController.get("/single",function(req,res)
 {

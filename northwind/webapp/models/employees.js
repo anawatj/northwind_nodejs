@@ -77,9 +77,9 @@ module.exports=function(sequelize, DataTypes)
 	{
     	classMethods: {
       		associate: function(models) {
-        		Employees.belongToMany(models.Territories, 
+        		Employees.hasMany(models.Territories, 
         		{
-          			through: 'tbl_employees_territories',
+          			through: models.EmployeeTerritories,
           			foreignKey:'employee_id'
         		});
       	}

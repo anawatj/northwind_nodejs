@@ -22,7 +22,7 @@ module.exports=function(sequelize, DataTypes)
 			classMethods: {
       		associate: function(models) {
         		Territories.belongTo(models.Regions,{forignKey:"region_id"});
-        		Territories.belongToMany(models.Employees,{through:"tbl_employees_territories",forignKey:"territory_id"});
+        		Territories.hasMany(models.Employees,{through:models.EmployeeTerritories,forignKey:"territory_id"});
       	}
 	}
 });
