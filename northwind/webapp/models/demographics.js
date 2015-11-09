@@ -17,10 +17,7 @@ module.exports=function(sequelize, DataTypes)
 	{
     	classMethods: {
       			associate: function(models) {
-        			DemoGraphics.belongToMany(models.Customers, {
-          			through: models.CustomerDemographics,
-          			foreignKey: 'customer_type_id'
-        		});
+        			DemoGraphics.hasMany(models.Customers, {through: models.CustomerDemographics,forignKey:"customer_type_id"});
       		}
       	}
      });

@@ -29,7 +29,7 @@ export class CustomersEntryPage
 		country:"",
 		phone:"",
 		fax:"",
-		DemoGraphics:[]
+		demoGraphics:[]
 	}
 	constructor(http:Http)
 	{

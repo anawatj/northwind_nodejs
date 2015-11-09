@@ -66,7 +66,7 @@ module.exports=function(sequelize, DataTypes)
 		{
 			associate:function(models)
 			{
-				Customers.hasMany(models.DemoGraphics,{through: models.CustomerDemographics})
+				Customers.hasMany(models.DemoGraphics,{through: models.CustomerDemographics,forignKey:"customer_id"})
 			}
 		}
 	}
