@@ -71,7 +71,8 @@ module.exports=function(sequelize, DataTypes)
 		}
 	},
 	{
-		tableName:"tbl_employees"
+		tableName:"tbl_employees",
+		timestamps: false
 	},
 	{
     	classMethods: {

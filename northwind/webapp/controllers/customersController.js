@@ -37,7 +37,15 @@ customersController.get("/single",function(req,res)
 });
 customersController.post("/save",function(req,res)
 {
-	res.json({});
+	if(req.body.id==0)
+	{
+		models.Customers.create(req.body,
+			{include:[models.DemoGraphics]})
+		.then(function(ret)
+		{
+			res.json(ret);
+		});
+	}
 });
 customersController.delete("/delete",function(req,res)
 {

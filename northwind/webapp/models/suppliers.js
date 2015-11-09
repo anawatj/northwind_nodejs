@@ -60,7 +60,8 @@ module.exports=function(sequelize, DataTypes)
 		}
 	},
 	{
-		tableName:"tbl_suppliers"
+		tableName:"tbl_suppliers",
+		timestamps: false
 	});
 	return Suppliers;
 }

@@ -15,13 +15,36 @@ import {CheckListBox} from '../../directives/checklistbox.ts';
 )
 export class CustomersEntryPage
 {
+	demoGraphics=[];
+	model=
+	{
+		id:0,
+		companyName:"",
+		contactName:"",
+		contactTitle:"",
+		address:"",
+		city:"",
+		region:"",
+		postalCode:"",
+		country:"",
+		phone:"",
+		fax:"",
+		DemoGraphics:[]
+	}
 	constructor(http:Http)
 	{
-
+		this.http=http;
+		this.http.get("northwind/masters/demographics/all")
+		.map(r=>r.json())
+		.subscribe(demoGraphics=>this.demoGraphics=demoGraphics);
 	}
 	save()
 	{
-
+		this.http.post("northwind/customers/save", JSON.stringify(this.model), {
+        headers: new Headers({
+          'Content-Type': 'application/json'
+        })
+      	}).map(r => r.json()).subscribe((res:Response)=>this.success(res));
 	}
 	clear()
 	{

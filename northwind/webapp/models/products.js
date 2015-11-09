@@ -50,7 +50,8 @@ module.exports=function(sequelize, DataTypes)
 		}
 	},
 	{
-		tableName:"tbl_products"
+		tableName:"tbl_products",
+		timestamps: false
 	},
 	{
 		classMethods:

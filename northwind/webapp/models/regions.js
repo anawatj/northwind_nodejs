@@ -11,7 +11,8 @@ module.exports=function(sequelize, DataTypes)
 		}
 	},
 	{
-		tableName:"tbl_regions"
+		tableName:"tbl_regions",
+		timestamps: false
 	});
 	return Regions;
 }

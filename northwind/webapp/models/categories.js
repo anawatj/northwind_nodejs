@@ -17,7 +17,8 @@ module.exports=function(sequelize, DataTypes)
 		}
 	},
 	{
-		tableName:"tbl_categories"
+		tableName:"tbl_categories",
+		timestamps: false
 	});
 	return Categories;
 }

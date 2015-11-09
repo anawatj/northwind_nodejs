@@ -15,7 +15,8 @@ module.exports=function(sequelize, DataTypes)
 		}
 	},
 	{
-		tableName:"tbl_territories"
+		tableName:"tbl_territories",
+		timestamps: false
 	},
 	{
 			classMethods: {

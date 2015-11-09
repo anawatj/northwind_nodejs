@@ -16,6 +16,10 @@ module.exports=function(sequelize, DataTypes)
 			primaryKey: true,
       		autoIncrement: false
 		}
+	},
+	{
+		tableName:"tbl_employees_territories",
+		timestamps: false
 	});
 	return EmployeeTerritories;
 }

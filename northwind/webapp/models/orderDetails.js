@@ -30,7 +30,8 @@ module.exports=function(sequelize, DataTypes)
 		}
 	},
 	{
-		tableName:"tbl_order_details"
+		tableName:"tbl_order_details",
+		timestamps: false
 	},
 	{
 		classMethods:

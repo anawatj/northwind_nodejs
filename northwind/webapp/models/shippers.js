@@ -15,7 +15,8 @@ module.exports=function(sequelize, DataTypes)
 		}
 	},
 	{
-		tableName:"tbl_shippers"
+		tableName:"tbl_shippers",
+		timestamps: false
 	});
 	return Shippers;
 }

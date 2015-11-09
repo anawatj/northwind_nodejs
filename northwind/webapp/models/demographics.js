@@ -11,7 +11,8 @@ module.exports=function(sequelize, DataTypes)
 		}
 	},
 	{
-		tableName:"tbl_demographics"
+		tableName:"tbl_demographics",
+		timestamps: false
 	},
 	{
     	classMethods: {

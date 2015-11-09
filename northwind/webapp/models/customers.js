@@ -58,17 +58,15 @@ module.exports=function(sequelize, DataTypes)
 		}
 	},
 	{
-		tableName:"tbl_customers"
+		tableName:"tbl_customers",
+		timestamps: false
 	},
 	{
 		classMethods:
 		{
 			associate:function(models)
 			{
-				Customers.belongToMany(models.DemoGraphics,{
-					  through: models.CustomerDemographics,
-  					  foreignKey: 'customer_id'
-				})
+				Customers.hasMany(models.DemoGraphics,{through: models.CustomerDemographics})
 			}
 		}
 	}

@@ -70,7 +70,8 @@ module.exports=function(sequelize, DataTypes)
 		}
 	},
 	{
-		tableName:"tbl_orders"
+		tableName:"tbl_orders",
+		timestamps: false
 	},
 	{
 		classMethods:

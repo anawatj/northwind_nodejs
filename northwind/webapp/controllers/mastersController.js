@@ -24,7 +24,7 @@ mastersController.get("/regions/all",function(req,res)
 });
 mastersController.get("/demographics/all",function(req,res)
 {
-	models.Demographics.findAll()
+	models.DemoGraphics.findAll()
 	.then(function(demographics)
 	{
 		res.json(demographics);
