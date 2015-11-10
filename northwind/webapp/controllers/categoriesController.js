@@ -73,8 +73,8 @@ categoriesController.post("/save",function(req,res)
 		{
 			
 			categoryName:req.body.categoryName,
-			description:req.body.description,
-			updateAt : new Date()
+			description:req.body.description/*,
+			updateAt : new Date()*/
 		},
 		{
 			where:

@@ -89,6 +89,67 @@ customersController.post("/save",function(req,res)
 	}
 	
 });
+customersController.post("/search",function(req,res)
+{
+	if(req.body.companyName==undefined)
+	{
+		req.body.companyName="";
+	}
+	if(req.body.contactName==undefined)
+	{
+		req.body.contactName="";
+	}
+	if(req.body.contactTitle==undefined)
+	{
+		req.body.contactTitle="";
+	}
+	if(req.body.city==undefined)
+	{
+		req.body.city="";
+	}
+	if(req.body.region==undefined)
+	{
+		req.body.region="";
+	}
+	if(req.body.country==undefined)
+	{
+		req.body.country="";
+	}
+	models.Customers.findAll(
+	{
+		where:
+		{
+			companyName:
+			{
+				$like:'%'+req.body.companyName+'%'
+			},
+			contactName:
+			{
+				$like:'%'+req.body.contactName+'%'
+			},
+			contactTitle:
+			{
+				$like:'%'+req.body.contactTitle+'%'
+			},
+			city:
+			{
+				$like:'%'+req.body.city+'%'
+			},
+			region:
+			{
+				$like:'%'+req.body.region+'%'
+			},
+			country:
+			{
+				$like:'%'+req.body.country+'%'
+			}
+		},
+		attributes:['id','companyName','contactName','contactTitle','city','region','country']
+	}).then(function(customers)
+	{
+		res.json(customers);
+	});
+})
 customersController.delete("/delete",function(req,res)
 {
 	res.json({});
