@@ -59,9 +59,33 @@ customersController.post("/save",function(req,res)
 						customerTypeId:item.id
 					});
 				}
-			    
+
 				res.json(ret);
 		});
+	}else
+	{
+		 models.Customers.update(
+		 {
+		 	companyName:req.body.companyName,
+		 	contactName:req.body.contactName,
+		 	contactTitle:req.body.contactTitle,
+		 	address:req.body.address,
+		 	city:req.body.city,
+		 	region:req.body.region,
+		 	postalCode:req.body.postalCode,
+		 	country:req.body.country,
+		 	phone:req.body.phone,
+		 	fax:req.body.fax
+		 },
+		 {
+		 	where:
+		 	{
+		 		id:req.body.id
+		 	}
+		 }).then(function(ret)
+		 {
+		 		res.json(ret);	
+		 })
 	}
 	
 });
