@@ -8,7 +8,7 @@
 										<label>TerritoriesName</label>
 								</div>
 								<div class="col-xs-6">
-										<input type="text" class="form-control"/>
+										<input type="text" class="form-control" [(ng-model)]="model.territoryName"/>
 								</div>
 						</div>
 						<div class="row">
@@ -16,7 +16,10 @@
 									<label>Region</label>
 								</div>
 								<div class="col-xs-6">
-										<select class="form-control"></select>
+										<select class="form-control" [(ng-model)]="model.regionId">
+											<option></option>
+											<option *ng-for="#item of regions" value="{{item.id}}">{{item.regionName}}</option>
+										</select>
 								</div>
 						</div>
 						<div class="row">

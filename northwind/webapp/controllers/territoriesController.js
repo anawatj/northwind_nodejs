@@ -32,7 +32,14 @@ territoriesControllers.get("/single",function(req,res)
 });
 territoriesControllers.post('/save',function(req,res)
 {
-	res.json({});
+	if(req.body.id==0)
+	{
+		models.Territories.create(req.body)
+		.then(function(territory)
+		{
+			res.json(territory);
+		})
+	}
 });
 territoriesControllers.post("/search",function(req,res)
 {
