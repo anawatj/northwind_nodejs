@@ -44,18 +44,26 @@ customersController.get("/single",function(req,res)
 });
 customersController.post("/save",function(req,res)
 {
-	if(req.body.id==0)
-	{
-		models.Customers.create(req.body,
+		if(req.body.id==0)
 		{
-			include:[{model:models.DemoGraphics,as:"demographics"}]
-		})
-		.then(function(ret)
-		{
-
-			res.json(ret);
+			models.Customers.create(req.body)
+			.then(function(ret)
+			{
+				for(var index=0;index<req.body.demographics.length;index++)
+				{
+					var item  = req.body.demographics[index];
+					models.CustomerDemographics.upsert(
+					{
+						id:0,
+						customerId:ret.id,
+						customerTypeId:item.id
+					});
+				}
+			    
+				res.json(ret);
 		});
 	}
+	
 });
 customersController.delete("/delete",function(req,res)
 {

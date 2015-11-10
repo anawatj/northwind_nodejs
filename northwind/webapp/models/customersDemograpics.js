@@ -8,7 +8,17 @@ module.exports=function(sequelize, DataTypes)
       		primaryKey: true,
       		autoIncrement: true,
       		field:"id"
-    		}
+    		},
+    	customerId:
+    	{
+    		type:DataTypes.INTEGER,
+    		field:"customer_id"
+    	},
+    	customerTypeId:
+    	{
+    		type:DataTypes.INTEGER,
+    		field:"customer_type_id"
+    	}
 	},
 	{
 		tableName:"tbl_customers_demographics",
