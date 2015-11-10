@@ -49,11 +49,7 @@ customersController.post("/save",function(req,res)
 		{
 			include:
 			[
-				{
-					model:models.DemoGraphics,
-					as:"demographics",
-					include:[models.CustomerDemographics]
-				}
+				{ all: true }
 			]
 		}).then(function(ret)
 		{
