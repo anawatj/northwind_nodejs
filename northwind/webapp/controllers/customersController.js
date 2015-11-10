@@ -44,49 +44,22 @@ customersController.get("/single",function(req,res)
 });
 customersController.post("/save",function(req,res)
 {
-		if(req.body.id==0)
-		{
-			models.Customers.create(req.body)
-			.then(function(ret)
-			{
-				for(var index=0;index<req.body.demographics.length;index++)
-				{
-					var item  = req.body.demographics[index];
-					models.CustomerDemographics.upsert(
-					{
-						id:0,
-						customerId:ret.id,
-						customerTypeId:item.id
-					});
-				}
 
-				res.json(ret);
+		models.Customers.upsert(req.body,
+		{
+			include:
+			[
+				{
+					model:models.DemoGraphics,
+					as:"demographics",
+					include:[models.CustomerDemographics]
+				}
+			]
+		}).then(function(ret)
+		{
+			res.json(ret);
 		});
-	}else
-	{
-		 models.Customers.update(
-		 {
-		 	companyName:req.body.companyName,
-		 	contactName:req.body.contactName,
-		 	contactTitle:req.body.contactTitle,
-		 	address:req.body.address,
-		 	city:req.body.city,
-		 	region:req.body.region,
-		 	postalCode:req.body.postalCode,
-		 	country:req.body.country,
-		 	phone:req.body.phone,
-		 	fax:req.body.fax
-		 },
-		 {
-		 	where:
-		 	{
-		 		id:req.body.id
-		 	}
-		 }).then(function(ret)
-		 {
-		 		res.json(ret);	
-		 })
-	}
+	
 	
 });
 customersController.post("/search",function(req,res)
