@@ -20,7 +20,7 @@ territoriesControllers.get("/list",function(req,res)
 });
 territoriesControllers.get("/entry",function(req,res)
 {
-	res.send("entry");
+	res.render('territories/entry.html');
 });
 territoriesControllers.get("/all",function(req,res)
 {
