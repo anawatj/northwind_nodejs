@@ -24,11 +24,39 @@ territoriesControllers.get("/entry",function(req,res)
 });
 territoriesControllers.get("/all",function(req,res)
 {
-	res.json([]);
+	models.Territories.findAll(
+			{
+				include:[models.Region]
+			}
+		).then(function(territories)
+		{
+			res.json(territories);
+		});
 });
 territoriesControllers.get("/single",function(req,res)
 {
-	res.json({});
+	models.Territories.findAll(
+	{
+		where:
+		{
+			id:req.query.id
+		},
+		include:[models.Region]
+	}).then(function(territories)
+	{
+		if(territories.length==1)
+		{
+			res.json(territories[0]);
+		}else
+		{
+			res.json(
+			{
+				id:0,
+				territoryName:"",
+				regionId:undefined
+			});
+		}
+	})
 });
 territoriesControllers.post('/save',function(req,res)
 {
@@ -39,11 +67,50 @@ territoriesControllers.post('/save',function(req,res)
 		{
 			res.json(territory);
 		})
+	}else
+	{
+		models.Territories.update(
+		{
+			territoryName:req.body.territoryName,
+			regionId :req.body.regionId
+		},
+		{
+			where:
+			{
+				id:req.body.id
+			}
+		}).then(function(territory)
+		{
+			res.json(req.body);
+		});
 	}
 });
 territoriesControllers.post("/search",function(req,res)
 {
-	res.json([]);
+	if(req.body.territoryName==undefined)
+	{
+		req.body.territoryName="";
+	}
+	if(req.body.regionId==undefined)
+	{
+		req.body.regionId=null;
+	}
+	models.Territories.findAll(
+			{
+				where:
+				{
+						territoryName:
+						{
+							$like:'%'+req.body.territoryName+'%'
+						},
+						regionId:req.body.regionId
+				}
+			}
+		).then(function(territories)
+		{
+			res.json(territories);
+		});
+		
 });
 territoriesControllers.delete('/delete',function(req,res)
 {
