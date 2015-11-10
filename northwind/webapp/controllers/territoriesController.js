@@ -26,7 +26,7 @@ territoriesControllers.get("/all",function(req,res)
 {
 	models.Territories.findAll(
 			{
-				include:[models.Region]
+				include:[models.Regions]
 			}
 		).then(function(territories)
 		{
@@ -41,7 +41,7 @@ territoriesControllers.get("/single",function(req,res)
 		{
 			id:req.query.id
 		},
-		include:[models.Region]
+		include:[models.Regions]
 	}).then(function(territories)
 	{
 		if(territories.length==1)
@@ -104,13 +104,14 @@ territoriesControllers.post("/search",function(req,res)
 							$like:'%'+req.body.territoryName+'%'
 						},
 						regionId:req.body.regionId
-				}
+				},
+				include:[models.Regions]
 			}
 		).then(function(territories)
 		{
 			res.json(territories);
 		});
-		
+
 });
 territoriesControllers.delete('/delete',function(req,res)
 {
