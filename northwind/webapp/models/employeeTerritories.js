@@ -5,16 +5,9 @@ module.exports=function(sequelize, DataTypes)
 		employeeId:
 		{
 			type:DataTypes.INTEGER,
-			field:"employee_id",
+			field:"id",
 			primaryKey: true,
-      		autoIncrement: false
-		},
-		territoriesId:
-		{
-			type:DataTypes.INTEGER,
-			field:"territory_id",
-			primaryKey: true,
-      		autoIncrement: false
+      		autoIncrement: true
 		}
 	},
 	{

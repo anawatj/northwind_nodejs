@@ -29,9 +29,10 @@ customersController.get("/entry",function(req,res)
 **************************/
 customersController.get("/all",function(req,res)
 {
+
 	models.Customers.findAll(
 	{
-		include:[models.DemoGraphics]
+		include:[{ model:models.DemoGraphics,as:"demographics" }]
 	}).then(function(customers)
 	{
 		res.json(customers);
@@ -46,9 +47,12 @@ customersController.post("/save",function(req,res)
 	if(req.body.id==0)
 	{
 		models.Customers.create(req.body,
-			{include:[models.DemoGraphics]})
+		{
+			include:[{model:models.DemoGraphics,as:"demographics"}]
+		})
 		.then(function(ret)
 		{
+
 			res.json(ret);
 		});
 	}

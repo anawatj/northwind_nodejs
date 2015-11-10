@@ -15,14 +15,12 @@ module.exports=function(sequelize, DataTypes)
 		}
 	},
 	{
-		tableName:"tbl_territories",
-		timestamps: false
-	},
-	{
+			tableName:"tbl_territories",
+			timestamps: false,
 			classMethods: {
       		associate: function(models) {
-        		Territories.belongTo(models.Regions,{forignKey:"region_id"});
-        		Territories.hasMany(models.Employees,{through:models.EmployeeTerritories,forignKey:"territory_id"});
+        		Territories.belongsTo(models.Regions,{foreignKey:"region_id"});
+        		Territories.belongsToMany(models.Employees,{through:models.EmployeeTerritories,foreignKey:"territory_id"});
       	}
 	}
 });

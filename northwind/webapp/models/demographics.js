@@ -12,12 +12,10 @@ module.exports=function(sequelize, DataTypes)
 	},
 	{
 		tableName:"tbl_demographics",
-		timestamps: false
-	},
-	{
+		timestamps: false,
     	classMethods: {
       			associate: function(models) {
-        			DemoGraphics.hasMany(models.Customers, {through: models.CustomerDemographics,forignKey:"customer_type_id"});
+        			DemoGraphics.belongsToMany(models.Customers, {through: models.CustomerDemographics,foreignKey:"customer_type_id" ,as:"customers"});
       		}
       	}
      });

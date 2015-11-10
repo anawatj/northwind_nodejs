@@ -3,19 +3,12 @@ module.exports=function(sequelize, DataTypes)
 {
 	var CustomerDemographics=sequelize.define('CustomerDemographics',
 	  {
-    	customerId: {
+    	id: {
       		type: DataTypes.INTEGER,
       		primaryKey: true,
-      		autoIncrement: false,
-      		field:"customer_id"
-    		},
-    	customerTypeId:
-    	{
-    		type:DataTypes.INTEGER,
-    		primaryKey:true,
-    		autoIncrement:false,
-    		field:"customer_type_id"
-    	}
+      		autoIncrement: true,
+      		field:"id"
+    		}
 	},
 	{
 		tableName:"tbl_customers_demographics",

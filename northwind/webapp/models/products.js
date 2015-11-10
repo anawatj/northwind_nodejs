@@ -51,15 +51,13 @@ module.exports=function(sequelize, DataTypes)
 	},
 	{
 		tableName:"tbl_products",
-		timestamps: false
-	},
-	{
+		timestamps: false,
 		classMethods:
 		{
 			associate:function(models)
 			{
-				Products.belongTo(models.Categories,{forignKey:"category_id"});
-				Products.belongTo(models.Suppliers,{forignKey:"supplier_id"});
+				Products.belongsTo(models.Categories,{foreignKey:"category_id"});
+				Products.belongsTo(models.Suppliers,{foreignKey:"supplier_id"});
 			}
 		}
 	});

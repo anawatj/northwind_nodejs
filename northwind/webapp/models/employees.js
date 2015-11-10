@@ -71,13 +71,11 @@ module.exports=function(sequelize, DataTypes)
 		}
 	},
 	{
-		tableName:"tbl_employees",
-		timestamps: false
-	},
-	{
     	classMethods: {
+    		tableName:"tbl_employees",
+			timestamps: false,
       		associate: function(models) {
-        		Employees.hasMany(models.Territories, 
+        		Employees.belongsToMany(models.Territories, 
         		{
           			through: models.EmployeeTerritories,
           			foreignKey:'employee_id'

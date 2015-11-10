@@ -31,14 +31,12 @@ module.exports=function(sequelize, DataTypes)
 	},
 	{
 		tableName:"tbl_order_details",
-		timestamps: false
-	},
-	{
+		timestamps: false,
 		classMethods:
 		{
 			associate:function(models)
 			{
-				OrderDetails.belongTo(models.Products,{forignKey:"product_id"});
+				OrderDetails.belongsTo(models.Products,{foreignKey:"product_id"});
 			}
 		}
 	});

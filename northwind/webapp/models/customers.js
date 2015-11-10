@@ -59,14 +59,12 @@ module.exports=function(sequelize, DataTypes)
 	},
 	{
 		tableName:"tbl_customers",
-		timestamps: false
-	},
-	{
+		timestamps: false,
 		classMethods:
 		{
 			associate:function(models)
 			{
-				Customers.hasMany(models.DemoGraphics,{through: models.CustomerDemographics,forignKey:"customer_id"})
+				Customers.belongsToMany(models.DemoGraphics,{through:models.CustomerDemographics,foreignKey:"customer_id",as:"demographics"})
 			}
 		}
 	}

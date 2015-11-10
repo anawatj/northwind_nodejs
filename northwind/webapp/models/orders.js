@@ -71,17 +71,15 @@ module.exports=function(sequelize, DataTypes)
 	},
 	{
 		tableName:"tbl_orders",
-		timestamps: false
-	},
-	{
+		timestamps: false,
 		classMethods:
 		{
 			associate:function(models)
 			{
-				Orders.belongTo(models.Employees,{forignKey:"employee_id"});
-				Orders.belongTo(models.Customers,{forignKey:"customer_id"});
-				Orders.belongTo(models.Shippers,{forignKey:"ship_via"});
-				Orders.hasMany(models.OrderDetails,{forignKey:"order_id"});
+				Orders.belongsTo(models.Employees,{foreignKey:"employee_id"});
+				Orders.belongsTo(models.Customers,{foreignKey:"customer_id"});
+				Orders.belongsTo(models.Shippers,{foreignKey:"ship_via"});
+				Orders.hasMany(models.OrderDetails,{foreignKey:"order_id"});
 			}
 		}
 	});
