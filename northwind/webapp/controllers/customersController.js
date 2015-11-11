@@ -45,16 +45,15 @@ customersController.get("/single",function(req,res)
 customersController.post("/save",function(req,res)
 {
 
-		models.Customers.upsert(req.body,
-		{
-			include:
-			[
-				{ all: true }
-			]
-		}).then(function(ret)
-		{
-			res.json(ret);
-		});
+		
+			models.Customers.upsert(req.body)
+			.then(function(ret)
+			{
+				res.json(ret);
+			});
+			
+		
+	
 	
 	
 });
