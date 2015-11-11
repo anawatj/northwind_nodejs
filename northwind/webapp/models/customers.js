@@ -64,7 +64,7 @@ module.exports=function(sequelize, DataTypes)
 		{
 			associate:function(models)
 			{
-				Customers.belongsToMany(models.DemoGraphics,{through:models.CustomerDemographics,foreignKey:"customer_id",as:"demographics",onDelete: 'cascade',individualHooks: true})
+				Customers.belongsToMany(models.DemoGraphics,{through:models.CustomerDemographics,foreignKey:"customer_id",as:"demographics",onDelete: 'cascade',onUpdate:'CASCADE'})
 			}
 		}
 	}
