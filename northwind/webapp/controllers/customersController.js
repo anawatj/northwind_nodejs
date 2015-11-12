@@ -46,11 +46,49 @@ customersController.post("/save",function(req,res)
 {
 
 		
-			models.Customers.upsert(req.body)
+		/*	models.Customers.upsert(req.body)
 			.then(function(ret)
 			{
 				res.json(ret);
-			});
+			});*/
+	if(req.body.id==0)
+	{
+		models.Customers.create(req.body)
+		.then(function(customer )
+		{
+			for(var index=0;index<req.body.demographics.length;index++)
+			{
+					var item = req.body.demographics[index];
+					models.CustomerDemographics
+					.create(
+								{
+									customerId:customer.id,
+									customerTypeId:item.id
+								}
+							).then(function(demographic)
+							{
+
+							});
+					res.json(customer);
+
+			}
+		});
+	}else
+	{
+		models.Customers.update(req.body,
+		{
+			where:
+			{
+				id:req.body.id
+			}
+		}).then(function(ret)
+		{
+			/*for(var index=0;index<req.body.demographics.length;index++)
+			{
+				var item =
+			}*/
+		});
+	}
 			
 		
 	
