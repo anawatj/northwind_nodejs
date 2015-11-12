@@ -46,11 +46,7 @@ customersController.post("/save",function(req,res)
 {
 
 		
-		/*	models.Customers.upsert(req.body)
-			.then(function(ret)
-			{
-				res.json(ret);
-			});*/
+	
 	if(req.body.id==0)
 	{
 		models.Customers.create(req.body)
@@ -83,10 +79,7 @@ customersController.post("/save",function(req,res)
 			}
 		}).then(function(ret)
 		{
-			/*for(var index=0;index<req.body.demographics.length;index++)
-			{
-				var item =
-			}*/
+			
 		});
 	}
 			
