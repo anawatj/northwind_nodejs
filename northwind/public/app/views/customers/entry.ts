@@ -33,10 +33,13 @@ export class CustomersEntryPage
 	}
 	constructor(http:Http)
 	{
+		var key = UrlParams.getUrl().id;
 		this.http=http;
 		this.http.get("northwind/masters/demographics/all")
 		.map(r=>r.json())
 		.subscribe(demoGraphics=>this.demoGraphics=demoGraphics);
+		this.http.get("northwind/customers/single?id="+key).map(r=>r.json())
+		.subscribe((res:Response)=>this.getInfo(res));
 	}
 	save()
 	{
@@ -45,6 +48,14 @@ export class CustomersEntryPage
           'Content-Type': 'application/json'
         })
       	}).map(r => r.json()).subscribe((res:Response)=>this.success(res));
+	}
+	success(res)
+	{
+		window.location="northwind/customers/entry?id="+res.id;
+	},
+	getInfo(res)
+	{
+		this.model= res;
 	}
 	clear()
 	{

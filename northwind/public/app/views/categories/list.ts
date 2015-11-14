@@ -30,7 +30,10 @@ export class CategoriesListPage
 			{
 				this.model.categoryName="";
 			}
-			this.http.post('northwind/categories/search',JSON.stringify(this.model))
+			this.http.post('northwind/categories/search',JSON.stringify(this.model), {
+        	headers: new Headers({
+          		'Content-Type': 'application/json'
+        		})})
 			.map(r=>r.json())
 			.subscribe(results=>this.results=results);
 	}

@@ -40,7 +40,19 @@ customersController.get("/all",function(req,res)
 });
 customersController.get("/single",function(req,res)
 {
-	res.json({});
+	models.Customers.findAll
+	(
+		{
+			include:[{model:models.DemoGraphics,as:"demographics"}],
+			where:
+			{
+				id:req.query.id
+			}
+		}
+	).then(function(results)
+	{
+		res.status(200).json(results[0]);
+	});
 });
 customersController.post("/save",function(req,res)
 {
@@ -66,6 +78,28 @@ customersController.post("/save",function(req,res)
 						t.rollback();
 						res.status(500).json(err);
 					});
+				}else
+				{
+					return models.Customers.update
+					(
+						req.body,
+						{
+							transaction:t,
+							where:
+							{
+								id:req.body.id
+							}
+						}
+					).then(function(ret)
+					{
+						t.commit();
+						res.status(200).json(req.body)
+					}).catch(function(err)
+					{
+						t.rollback();
+						res.status(500).json(err);
+					});
+					
 				}
 			
 	});
