@@ -60,50 +60,25 @@ customersController.post("/save",function(req,res)
 	var sequelize = models.sequelize;
 	sequelize.transaction({autocommit:false},function(t)
 	{
-				if(isInsert)
-				{
-					return models.Customers.create(
-					
-						req.body,
-						{
-							transaction:t,
-							include:[{model:models.DemoGraphics,as:"demographics"}]
-							
-						}
-					).then(function(ret)
-					{
-						
-					    res.status(200).json(ret);
-					
-					})
-					.catch(function(err)
-					{
-						t.rollback();
-						res.status(500).json(err);
-					});
-				}else
-				{
-					return models.Customers.update
-					(
-						req.body,
-						{
-							transaction:t,
-							where:
-							{
-								id:req.body.id
-							}
-						}
-					).then(function(ret)
-					{
-						t.commit();
-						res.status(200).json(req.body)
-					}).catch(function(err)
-					{
-						t.rollback();
-						res.status(500).json(err);
-					});
+			
+			var customer = models.Customers.build(req.body,
+			{
+				isNewRecord:isInsert,
+				include:[{model:models.DemoGraphics,as:"demographics"}]
+			});
 
-				}
+
+			return customer.save(
+			{
+				transaction:t
+			}).then(function(ret)
+			{
+				res.status(200).json(ret);
+			}).catch(function(err)
+			{
+				t.rollback();
+				res.status(500).json(err);
+			})
 			
 	});
 
