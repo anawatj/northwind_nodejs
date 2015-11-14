@@ -15,7 +15,7 @@ module.exports=function(sequelize, DataTypes)
 		timestamps: false,
     	classMethods: {
       			associate: function(models) {
-        			DemoGraphics.belongsToMany(models.Customers, {through: models.CustomerDemographics,foreignKey:"customer_type_id" ,as:"customers"});
+        			DemoGraphics.belongsToMany(models.Customers, {through:models.CustomerDemographics ,foreignKey:"customer_type_id" ,as:"customers"});
       		}
       	}
      });

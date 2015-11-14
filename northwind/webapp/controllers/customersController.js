@@ -68,12 +68,15 @@ customersController.post("/save",function(req,res)
 						{
 							transaction:t,
 							include:[{model:models.DemoGraphics,as:"demographics"}]
+							
 						}
 					).then(function(ret)
 					{
-						t.commit();
-						res.status(200).json(ret);
-					}).catch(function(err)
+						
+					    res.status(200).json(ret);
+					
+					})
+					.catch(function(err)
 					{
 						t.rollback();
 						res.status(500).json(err);
@@ -99,7 +102,7 @@ customersController.post("/save",function(req,res)
 						t.rollback();
 						res.status(500).json(err);
 					});
-					
+
 				}
 			
 	});
@@ -175,6 +178,27 @@ customersController.post("/search",function(req,res)
 })
 customersController.delete("/delete",function(req,res)
 {
-	res.json({});
+	var isInsert=req.body.id==0;
+	var sequelize = models.sequelize;
+	sequelize.transaction({autocommit:false},function(t)
+	{
+		return models.Customers.destroy(
+		{
+			where:
+			{
+				id:req.query.id
+			},
+			transaction:t,
+			cascade:true
+		}).then(function()
+		{
+			t.commit();
+			res.status(200).json(true);
+		}).catch(function(err)
+		{
+			t.rollback();
+			res.status(500).json(err);
+		});
+	});
 });
 module.exports= customersController;

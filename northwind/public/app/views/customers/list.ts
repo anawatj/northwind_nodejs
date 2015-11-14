@@ -66,7 +66,13 @@ export class CustomersListPage
 	}
 	remove(item)
 	{
-
+		this.http.delete('northwind/customers/delete?id='+item.id)
+		.map(r=>r.json())
+		.subscribe((res:Response)=>this.deleteSuccess(res))
+	}
+	deleteSuccess(res)
+	{
+		window.location="northwind/customers/list";
 	}
 }
 bootstrap(CustomersListPage);

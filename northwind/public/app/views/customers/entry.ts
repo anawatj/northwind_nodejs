@@ -51,6 +51,14 @@ export class CustomersEntryPage
 	}
 	success(res)
 	{
+		if(res==undefined)
+		{
+			return;
+		}
+		if(res.id==undefined)
+		{
+			return ;
+		}
 		window.location="northwind/customers/entry?id="+res.id;
 	},
 	getInfo(res)

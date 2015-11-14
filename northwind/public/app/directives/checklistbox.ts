@@ -34,7 +34,7 @@ export class CheckListBox
 	display:string;
 	value:string;
 
-	constructure()
+	constructor()
 	{
 
 		for(var index=0;index<this.list.length;index++)
