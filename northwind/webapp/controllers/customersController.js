@@ -14,6 +14,19 @@ customersController.use(bodyParser.urlencoded({
 ****************************/
 customersController.get('/',function(req,res)
 {
+	//var sequelize = models.sequelize;
+	var customer = models.Customers.build({
+    companyName:"11",
+    demographics:
+    [
+      {id:1,demographicName:"Demo1"},
+      {id:2,demographicName:"Demo2"}
+    ]
+  },
+  {
+    include:[{model:models.DemoGraphics,as:"demographics"}]
+  });
+  customer.save();
 	res.send("Categories");
 });
 customersController.get('/list',function(req,res)
