@@ -2,8 +2,8 @@ var express = require('express');
 var bodyParser  = require('body-parser');
 var path = require('path');
 var app = express();
-
-
+//var expressLayouts = require('express-ejs-layouts')
+var engine = require('ejs-locals');
 var homes = require("./webapp/controllers/homeController");
 var categories = require("./webapp/controllers/categoriesController");
 var customers = require("./webapp/controllers/customersController");
@@ -18,7 +18,7 @@ app.get("/",function(req,res)
 {
 	res.send("Hello Northwind");
 
-})
+});
 
 homes.use("/categories",categories);
 homes.use("/customers",customers);
@@ -35,7 +35,9 @@ homes.use("/node_modules",express.static(path.join(__dirname,"node_modules")));
 
 app.use("/northwind",homes);
 app.set('views', __dirname + '/webapp/views');
-app.engine('html', require('ejs').renderFile);
+//app.engine('html', require('ejs').renderFile);
+app.engine('html',engine);
+//app.use(expressLayouts);
 
 app.use(bodyParser.urlencoded());
 app.use(bodyParser.json());
@@ -43,6 +45,7 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({
   extended: true
 }));
+
 
 var server = app.listen(9000, function () {
   var host = server.address().address;
