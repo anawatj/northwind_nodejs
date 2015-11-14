@@ -60,41 +60,46 @@ categoriesController.get("/single",function(req,res)
 });
 categoriesController.post("/save",function(req,res)
 {
-	if(req.body.id==0)
+	var isInsert=req.body.id==0;
+	var sequelize = models.sequelize;
+	sequelize.transaction({autocommit:false},function(t)
 	{
-		models.Categories.create(req.body)
-		.then(function(ret)
-		{
-			res.json(ret);
-		});
-	}else
-	{
-		models.Categories.update(
-		{
-			
-			categoryName:req.body.categoryName,
-			description:req.body.description/*,
-			updateAt : new Date()*/
-		},
-		{
-			where:
+			if(isInsert)
 			{
-				id:req.body.id
+				return models.Categories.create(
+						req.body,
+						{
+							transaction:t
+
+						}
+					).then(function(ret)
+					{
+						t.commit();
+						res.status(200).json(ret);
+					});
+			}else
+			{
+				return models.Categories.update(
+						req.body
+						,
+						{
+							where:
+							{
+								id:req.body.id
+							},
+							transaction:t
+						}
+					).then(function(ret)
+					{
+						t.commit();
+						res.status(200).json(req.body);
+					}).catch(function(err)
+					{
+						t.rollback();
+						res.status(500).json(err);
+					});
 			}
-		}).then(function(result)
-		{
-			models.Categories.findAll(
-			{
-				where:
-				{
-					id:req.body.id
-				}
-			}).then(function(ret)
-			{
-				res.json(ret[0]);
-			});
-		});
-	}
+	});
 
   
 });

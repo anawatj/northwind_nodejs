@@ -29,7 +29,7 @@ export class CategoriesEntryPage
 			key=0;
 		}
 		
-		this.http.get("northwind/categories/single?id="+key).map(r=>r.json()).subscribe(res=>this.model=res);
+		this.http.get("northwind/categories/single?id="+key).map(r=>r.json()).subscribe((res:Response)=>this.load(res));
 
 
 	}
@@ -44,6 +44,11 @@ export class CategoriesEntryPage
  		
 
 
+	},
+	load(res)
+	{
+		this.model = res;
+		
 	}
 	success(res)
 	{

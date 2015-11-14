@@ -44,46 +44,36 @@ customersController.get("/single",function(req,res)
 });
 customersController.post("/save",function(req,res)
 {
-
-		
-	
-	if(req.body.id==0)
+	var isInsert=req.body.id==0;
+	var sequelize = models.sequelize;
+	sequelize.transaction({autocommit:false},function(t)
 	{
-		models.Customers.create(req.body)
-		.then(function(customer )
-		{
-			for(var index=0;index<req.body.demographics.length;index++)
-			{
-					var item = req.body.demographics[index];
-					models.CustomerDemographics
-					.create(
-								{
-									customerId:customer.id,
-									customerTypeId:item.id
-								}
-							).then(function(demographic)
-							{
-
-							});
-					res.json(customer);
-
-			}
-		});
-	}else
-	{
-		models.Customers.update(req.body,
-		{
-			where:
-			{
-				id:req.body.id
-			}
-		}).then(function(ret)
-		{
+				if(isInsert)
+				{
+					return models.Customers.create(
+					
+						req.body,
+						{
+							transaction:t,
+							include:[{model:models.DemoGraphics,as:"demographics"}]
+						}
+					).then(function(ret)
+					{
+						t.commit();
+						res.status(200).json(ret);
+					}).catch(function(err)
+					{
+						t.rollback();
+						res.status(500).json(err);
+					});
+				}
 			
-		});
-	}
+	});
+
+
 			
 		
+
 	
 	
 	
