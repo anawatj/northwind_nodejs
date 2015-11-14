@@ -37,7 +37,7 @@ export class CustomersEntryPage
 		this.http=http;
 		this.http.get("northwind/masters/demographics/all")
 		.map(r=>r.json())
-		.subscribe(demoGraphics=>this.demoGraphics=demoGraphics);
+		.subscribe((res:Response)=>this.loadDemographic(res));
 		this.http.get("northwind/customers/single?id="+key).map(r=>r.json())
 		.subscribe((res:Response)=>this.getInfo(res));
 	}
@@ -60,7 +60,12 @@ export class CustomersEntryPage
 			return ;
 		}
 		window.location="northwind/customers/entry?id="+res.id;
-	},
+	}
+	loadDemographic(res)
+	{
+		this.demoGraphics = res;
+		
+	}
 	getInfo(res)
 	{
 		this.model= res;
