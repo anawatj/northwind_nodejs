@@ -15,7 +15,7 @@ customersController.use(bodyParser.urlencoded({
 customersController.get('/',function(req,res)
 {
 	//var sequelize = models.sequelize;
-	var customer = models.Customers.build({
+	/*var customer = models.Customers.build({
     companyName:"11",
     demographics:
     [
@@ -26,7 +26,7 @@ customersController.get('/',function(req,res)
   {
     include:[{model:models.DemoGraphics,as:"demographics"}]
   });
-  customer.save();
+  customer.save();*/
 	res.send("Categories");
 });
 customersController.get('/list',function(req,res)
